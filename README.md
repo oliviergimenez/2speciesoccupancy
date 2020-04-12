@@ -58,7 +58,9 @@ Let's consider a scenario in which species 2 avoids species 1 while species 1 do
 Now we need to go back to the probabilities of occupancy. Let $x = \psi_{01}$, $y = \psi_{10}$ et $z = \psi_{11}$ soit $1 - x - y - z = \psi_{00}$, then we have a system of 3 equations with 3 unknowns:
 
 $$0.6 = x / (x + 1 - x - y - z) \Leftrightarrow x + 0.6y + 0.6z = 0.6$$
+
 $$0.1 = z / (z + y) \Leftrightarrow -0.1y + 0.9z = 0$$
+
 $$0.4 = y / (y + 1 - x - y - z) \Leftrightarrow 0.4x + y + 0.4z = 0.4$$
 
 which can be solved with the [Mathematica online solver](https://www.wolframalpha.com/input/?i=solve%7Bx%2B0.6y%2B0.6z%3D%3D0.6%2C-0.1y%2B0.9z%3D%3D0%2C0.4x%2By%2B0.4z%3D%3D0.4%7D): 
