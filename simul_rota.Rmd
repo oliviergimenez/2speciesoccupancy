@@ -1,9 +1,6 @@
 ---
-title: Simulate data and fit a 2-species static (aka single-season) occupancy model
-  à la Rota et al. (2016)
-output:
-  html_document:
-    keep_md: yes
+title: Simulate data and fit a 2-species static (aka single-season) occupancy model à la Rota et al. (2016)
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -12,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 600, cache = TRUE, warning = FALSE, mes
 
 ## Setting the scene
 
-We consider a two-species static occupancy model à la [Rota et al. (2016)](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12587).
+We consider a two-species static occupancy model à la [Rota et al. (2016)](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12587). We simulate data from this model, and fit the model to these data using `Unmarked`.
 
 Ignoring the site index, we use the following notation for the occupancy probabilities:
 
