@@ -1,4 +1,4 @@
-# Simulate data and fit 2-species occupancy model à la Rota et al. (2016) w/ Unmarked
+# Simulate data and fit 2-species occupancy model à la Rota et al. (2016) w/ the R package unmarked
 
 We consider a two-species static occupancy model à la [Rota et al. (2016)](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12587). We simulate data from this model, and fit the model to these data using `Unmarked`.
 The equations below do no display well, you'd rather have a look to the [PDF file](https://github.com/oliviergimenez/2speciesoccupancy/blob/master/simul_rota.pdf). With the [Rmd file](https://github.com/oliviergimenez/2speciesoccupancy/blob/master/simul_rota.Rmd), you can run the code in RStudio and reproduce the results. 
