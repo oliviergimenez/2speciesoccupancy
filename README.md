@@ -58,13 +58,13 @@ Let's consider a scenario in which species 2 avoids species 1 while species 1 do
 * ![$\Pr(z_{1} = 1 | z_2 = 0) = \Pr(z_1 = 1 | z_2 = 1) = 0.4$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_%7B1%7D%20%3D%201%20%7C%20z_2%20%3D%200)%20%3D%20%5CPr(z_1%20%3D%201%20%7C%20z_2%20%3D%201)%20%3D%200.4%24), species 1 does not care about presence/absence of species 2
 
 Now we need to go back to the occupancy probabilities. Let ![$x = \psi_{01}$](https://render.githubusercontent.com/render/math?math=%24x%20%3D%20%5Cpsi_%7B01%7D%24), ![$y = \psi_{10}$](https://render.githubusercontent.com/render/math?math=%24y%20%3D%20%5Cpsi_%7B10%7D%24), ![$z = \psi_{11}$](https://render.githubusercontent.com/render/math?math=%24z%20%3D%20%5Cpsi_%7B11%7D%24) so that ![$\psi_{00} = 1 - x - y - z$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B00%7D%20%3D%201%20-%20x%20-%20y%20-%20z%24), then we have a system of 3 equations with 3 unknowns:
-<p align="center">
+
 ![$0.6 = / (x + 1 - x - y - z) \Leftrightarrow x + 0.6y + 0.6z = 0.6$](https://render.githubusercontent.com/render/math?math=%240.6%20%3D%20%2F%20(x%20%2B%201%20-%20x%20-%20y%20-%20z)%20%5CLeftrightarrow%20x%20%2B%200.6y%20%2B%200.6z%20%3D%200.6%24)
 
 ![$0.1 = z / (z + y) \Leftrightarrow -0.1y + 0.9z = 0$](https://render.githubusercontent.com/render/math?math=%240.1%20%3D%20z%20%2F%20(z%20%2B%20y)%20%5CLeftrightarrow%20-0.1y%20%2B%200.9z%20%3D%200%24)
 
 ![$0.4 = y / (y + 1 - x - y - z) \Leftrightarrow 0.4x + y + 0.4z = 0.4$](https://render.githubusercontent.com/render/math?math=%240.4%20%3D%20y%20%2F%20(y%20%2B%201%20-%20x%20-%20y%20-%20z)%20%5CLeftrightarrow%200.4x%20%2B%20y%20%2B%200.4z%20%3D%200.4%24)
-</p>
+
 which can be solved with the [Mathematica online solver](https://www.wolframalpha.com/input/?i=solve%7Bx%2B0.6y%2B0.6z%3D%3D0.6%2C-0.1y%2B0.9z%3D%3D0%2C0.4x%2By%2B0.4z%3D%3D0.4%7D): 
 
 ```r
