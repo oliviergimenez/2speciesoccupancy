@@ -72,6 +72,19 @@ psi11 <- 4/175
 psi00 <- 1 - (psi01 + psi10 + psi11) # 54/175
 ```
 
+In `R`, we could use
+```
+a <- matrix(c(1,0.6,0.6,0,-0.1,0.9,0.4,1,0.4),ncol=3,byrow=T)
+b <- matrix(c(0.6,0,0.4),ncol=1)
+solve(a,b)
+```
+
+```
+## 0.46285714
+## 0.20571429
+## 0.02285714
+```
+
 We then obtain the marginal occupancy probabilities:
 
 ```r
