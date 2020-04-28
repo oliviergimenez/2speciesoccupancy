@@ -11,9 +11,9 @@ Ignoring the site index, we use the following notation for the occupancy probabi
 
 
 * ![$\psi_{11}](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B11%7D) is the prob. that species 1 and species 2 are both present;  
-* $\psi_{10}$ is the prob. that species 1 is present and species 2 is absent;
-* $\psi_{01}$ is the prob. that species 1 is absent and species 2 is present;
-* $\psi_{00}$ is the prob. that species 1 and species 2 are both absent,
+* ![$\psi_{10}](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B10%7D) is the prob. that species 1 is present and species 2 is absent;
+* ![$\psi_{01}](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B01%7D) is the prob. that species 1 is absent and species 2 is present;
+* ![$\psi_{00}](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B00%7D) is the prob. that species 1 and species 2 are both absent,
 with avec $\psi_{11} + \psi_{10} + \psi_{01} + \psi_{00} = 1.$
 
 The marginal probabilities of occupancy are:
