@@ -53,11 +53,11 @@ J <- 5 # nb visits
 
 Let's consider a scenario in which species 2 avoids species 1 while species 1 does not care about species 2 and its presence or absence. To specify this scenario, we will work out the conditional probabilities with, for example:
 
-* $\Pr(z_2 = 1 | z_1 = 0) = 0.6$, species 2 is present with high probability whenever species 1 is absent
-* $\Pr(z_2 = 1 | z_1 = 1) = 0.1$, species 2 avoids species 1 when it is present
-* $\Pr(z_1 = 1 | z_2 = 0) = \Pr(z_1 = 1 | z_2 = 1) = 0.4$, species 1 does not care about presence/absence of species 2
+* ![$\Pr(z_2 = 1 | z_1 = 0) = 0.6$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%201%20%7C%20z_1%20%3D%200)%20%3D%200.6%24), species 2 is present with high probability whenever species 1 is absent
+* ![$\Pr(z_2 = 1 | z_1 = 1) = 0.1$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%201%20%7C%20z_1%20%3D%201)%20%3D%200.1%24), species 2 avoids species 1 when it is present
+* ![$\Pr(z_1 = 1 | z_2 = 0) = \Pr(z_1 = 1 | z_2 = 1) = 0.4$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%201%20%7C%20z_2%20%3D%200)%20%3D%20%5CPr(z_1%20%3D%201%20%7C%20z_2%20%3D%201)%20%3D%200.4%24), species 1 does not care about presence/absence of species 2
 
-Now we need to go back to the probabilities of occupancy. Let $x = \psi_{01}$, $y = \psi_{10}$ et $z = \psi_{11}$ soit $1 - x - y - z = \psi_{00}$, then we have a system of 3 equations with 3 unknowns:
+Now we need to go back to the probabilities of occupancy. Let ![$x = \psi_{01}$](https://render.githubusercontent.com/render/math?math=%24x%20%3D%20%5Cpsi_%7B01%7D%24), ![$y = \psi_{10}$](https://render.githubusercontent.com/render/math?math=%24y%20%3D%20%5Cpsi_%7B10%7D%24) et ![$z = \psi_{11}$](https://render.githubusercontent.com/render/math?math=%24z%20%3D%20%5Cpsi_%7B11%7D%24) soit ![$1 - x - y - z = \psi_{00}$](https://render.githubusercontent.com/render/math?math=%241%20-%20x%20-%20y%20-%20z%20%3D%20%5Cpsi_%7B00%7D%24), then we have a system of 3 equations with 3 unknowns:
 
 $$0.6 = x / (x + 1 - x - y - z) \Leftrightarrow x + 0.6y + 0.6z = 0.6$$
 
