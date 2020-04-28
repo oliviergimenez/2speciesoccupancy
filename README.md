@@ -14,14 +14,14 @@ Ignoring the site index, we use the following notation for the occupancy probabi
 * ![$\psi_{10}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B10%7D%24) is the prob. that species 1 is present and species 2 is absent;
 * ![$\psi_{01}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B01%7D%24) is the prob. that species 1 is absent and species 2 is present;
 * ![$\psi_{00}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B00%7D%24) is the prob. that species 1 and species 2 are both absent,
-with avec $\psi_{11} + \psi_{10} + \psi_{01} + \psi_{00} = 1.$
+with avec ![$\psi_{11} + \psi_{10} + \psi_{01} + \psi_{00} = 1.$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B11%7D%20%2B%20%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B01%7D%20%2B%20%5Cpsi_%7B00%7D%20%3D%201.%24)
 
 The marginal probabilities of occupancy are:
 
-* $\Pr(z_1 = 1) = \Pr(\mbox{species 1 is present}) = \psi_{10} + \psi_{11}$
-* $\Pr(z_2 = 1) = \Pr(\mbox{species 2 is present}) = \psi_{01} + \psi_{11}$
-* $\Pr(z_1 = 0) = \Pr(\mbox{species 1 is absent}) = \psi_{01} + \psi_{00}$
-* $\Pr(z_2 = 0) = \Pr(\mbox{species 2 is absent}) = \psi_{10} + \psi_{00}$
+* ![$\Pr(z_1 = 1) = \Pr(\text{species 1 is present}) = \psi_{10} + \psi_{11}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%201)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20present%7D)%20%3D%20%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B11%7D%24)
+* ![$\Pr(z_2 = 1) = \Pr(\text{species 2 is present}) = \psi_{01} + \psi_{11}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%201)%20%3D%20%5CPr(%5Ctext%7Bspecies%202%20is%20present%7D)%20%3D%20%5Cpsi_%7B01%7D%20%2B%20%5Cpsi_%7B11%7D%24)
+* ![$\Pr(z_1 = 0) = \Pr(\text{species 1 is absent}) = \psi_{01} + \psi_{00}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%200)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20absent%7D)%20%3D%20%5Cpsi_%7B01%7D%20%2B%20%5Cpsi_%7B00%7D%24)
+* ![$\Pr(z_2 = 0) = \Pr(\text{species 2 is absent}) = \psi_{10} + \psi_{00}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%200)%20%3D%20%5CPr(%5Ctext%7Bspecies%202%20is%20absent%7D)%20%3D%20%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B00%7D%24)
 
 And the conditional probabilities (reminder: $\Pr(\mbox{A|B}) = \Pr(\mbox{A and B})/\Pr(\mbox{B})$):
 
