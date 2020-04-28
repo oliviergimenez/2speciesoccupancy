@@ -7,7 +7,7 @@ The equations below do no display well, you'd rather have a look to the [PDF fil
 
 Ignoring the site index, we use the following notation for the occupancy probabilities:
 
-<img src="https://render.githubusercontent.com/render/math?math=$\psi_{11}$">
+![$\psi_{11}](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B11%7D)
 * $\psi_{11}$ is the prob. that species 1 and species 2 are both present;  
 * $\psi_{10}$ is the prob. that species 1 is present and species 2 is absent;
 * $\psi_{01}$ is the prob. that species 1 is absent and species 2 is present;
