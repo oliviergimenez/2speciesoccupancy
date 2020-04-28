@@ -1,31 +1,33 @@
 # Simulate data and fit 2-species occupancy model à la Rota et al. (2016) w/ the R package unmarked
 
-We consider a two-species static occupancy model à la [Rota et al. (2016)](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12587). We simulate data from this model, and fit the model to these data using `Unmarked`.
-The equations below do no display well, you'd rather have a look to the [PDF file](https://github.com/oliviergimenez/2speciesoccupancy/blob/master/simul_rota.pdf). With the [Rmd file](https://github.com/oliviergimenez/2speciesoccupancy/blob/master/simul_rota.Rmd), you can run the code in RStudio and reproduce the results. 
+We consider a two-species static occupancy model à la [Rota et al. (2016)](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12587). We simulate data from this model, and fit the model to these data using `Unmarked`. With the [Rmd file](https://github.com/oliviergimenez/2speciesoccupancy/blob/master/simul_rota.Rmd), you can run the code in RStudio and reproduce the results. 
 
 ## Setting the scene
 
+
+
 Ignoring the site index, we use the following notation for the occupancy probabilities:
 
-* $\psi_{11}$ is the prob. that species 1 and species 2 are both present;  
-* $\psi_{10}$ is the prob. that species 1 is present and species 2 is absent;
-* $\psi_{01}$ is the prob. that species 1 is absent and species 2 is present;
-* $\psi_{00}$ is the prob. that species 1 and species 2 are both absent,
-with avec $\psi_{11} + \psi_{10} + \psi_{01} + \psi_{00} = 1.$
+
+* ![$\psi_{11}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B11%7D%24) is the prob. that species 1 and species 2 are both present;  
+* ![$\psi_{10}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B10%7D%24) is the prob. that species 1 is present and species 2 is absent;
+* ![$\psi_{01}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B01%7D%24) is the prob. that species 1 is absent and species 2 is present;
+* ![$\psi_{00}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B00%7D%24) is the prob. that species 1 and species 2 are both absent,
+with avec ![$\psi_{11} + \psi_{10} + \psi_{01} + \psi_{00} = 1.$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B11%7D%20%2B%20%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B01%7D%20%2B%20%5Cpsi_%7B00%7D%20%3D%201.%24)
 
 The marginal probabilities of occupancy are:
 
-* $\Pr(z_1 = 1) = \Pr(\mbox{species 1 is present}) = \psi_{10} + \psi_{11}$
-* $\Pr(z_2 = 1) = \Pr(\mbox{species 2 is present}) = \psi_{01} + \psi_{11}$
-* $\Pr(z_1 = 0) = \Pr(\mbox{species 1 is absent}) = \psi_{01} + \psi_{00}$
-* $\Pr(z_2 = 0) = \Pr(\mbox{species 2 is absent}) = \psi_{10} + \psi_{00}$
+* ![$\Pr(z_1 = 1) = \Pr(\text{species 1 is present}) = \psi_{10} + \psi_{11}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%201)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20present%7D)%20%3D%20%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B11%7D%24)
+* ![$\Pr(z_2 = 1) = \Pr(\text{species 2 is present}) = \psi_{01} + \psi_{11}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%201)%20%3D%20%5CPr(%5Ctext%7Bspecies%202%20is%20present%7D)%20%3D%20%5Cpsi_%7B01%7D%20%2B%20%5Cpsi_%7B11%7D%24)
+* ![$\Pr(z_1 = 0) = \Pr(\text{species 1 is absent}) = \psi_{01} + \psi_{00}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%200)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20absent%7D)%20%3D%20%5Cpsi_%7B01%7D%20%2B%20%5Cpsi_%7B00%7D%24)
+* ![$\Pr(z_2 = 0) = \Pr(\text{species 2 is absent}) = \psi_{10} + \psi_{00}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%200)%20%3D%20%5CPr(%5Ctext%7Bspecies%202%20is%20absent%7D)%20%3D%20%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B00%7D%24)
 
-And the conditional probabilities (reminder: $\Pr(\mbox{A|B}) = \Pr(\mbox{A and B})/\Pr(\mbox{B})$):
+And the conditional probabilities given that ![$\Pr(\text{A|B}) = \Pr(\text{A and B})/\Pr(\text{B})$](https://render.githubusercontent.com/render/math?math=%24%5CPr(%5Ctext%7BA%7CB%7D)%20%3D%20%5CPr(%5Ctext%7BA%20and%20B%7D)%2F%5CPr(%5Ctext%7BB%7D)%24):
 
-* $\Pr(z_1 = 1 | z_2 = 0) = \psi_{10} / (\psi_{10} + \psi_{00}) = \Pr(\mbox{species 1 is present given species 2 is absent});$
-* $\Pr(z_1 = 1 | z_2 = 1) = \psi_{11} / (\psi_{11} + \psi_{01}) = \Pr(\mbox{species 1 is present given species 2 is present});$
-* $\Pr(z_2 = 1 | z_1 = 0) = \psi_{01} / (\psi_{01} + \psi_{00}) = \Pr(\mbox{species 2 is present given species 1 is absent});$
-* $\Pr(z_2 = 1 | z_1 = 1) = \psi_{11} / (\psi_{11} + \psi_{10}) = \Pr(\mbox{species 2 is present given species 1 is present}).$
+* ![$\Pr(z_1 = 1 | z_2 = 0) = \psi_{10} / (\psi_{10} + \psi_{00}) = \Pr(\text{species 1 is present given species 2 is absent});$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%201%20%7C%20z_2%20%3D%200)%20%3D%20%5Cpsi_%7B10%7D%20%2F%20(%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B00%7D)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20present%20given%20species%202%20is%20absent%7D)%3B%24)
+* ![$\Pr(z_1 = 1 | z_2 = 1) = \psi_{11} / (\psi_{11} + \psi_{01}) = \Pr(\text{species 1 is present given species 2 is present});$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%201%20%7C%20z_2%20%3D%201)%20%3D%20%5Cpsi_%7B11%7D%20%2F%20(%5Cpsi_%7B11%7D%20%2B%20%5Cpsi_%7B01%7D)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20present%20given%20species%202%20is%20present%7D)%3B%24)
+* ![$\Pr(z_2 = 1 | z_1 = 0) = \psi_{01} / (\psi_{01} + \psi_{00}) = \Pr(\text{species 2 is present given species 1 is absent});$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%201%20%7C%20z_1%20%3D%200)%20%3D%20%5Cpsi_%7B01%7D%20%2F%20(%5Cpsi_%7B01%7D%20%2B%20%5Cpsi_%7B00%7D)%20%3D%20%5CPr(%5Ctext%7Bspecies%202%20is%20present%20given%20species%201%20is%20absent%7D)%3B%24)
+* ![$\Pr(z_2 = 1 | z_1 = 1) = \psi_{11} / (\psi_{11} + \psi_{10}) = \Pr(\text{species 2 is present given species 1 is present}).$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%201%20%7C%20z_1%20%3D%201)%20%3D%20%5Cpsi_%7B11%7D%20%2F%20(%5Cpsi_%7B11%7D%20%2B%20%5Cpsi_%7B10%7D)%20%3D%20%5CPr(%5Ctext%7Bspecies%202%20is%20present%20given%20species%201%20is%20present%7D).%24)
 
 ## Data simulation
 
@@ -51,17 +53,17 @@ J <- 5 # nb visits
 
 Let's consider a scenario in which species 2 avoids species 1 while species 1 does not care about species 2 and its presence or absence. To specify this scenario, we will work out the conditional probabilities with, for example:
 
-* $\Pr(z_2 = 1 | z_1 = 0) = 0.6$, species 2 is present with high probability whenever species 1 is absent
-* $\Pr(z_2 = 1 | z_1 = 1) = 0.1$, species 2 avoids species 1 when it is present
-* $\Pr(z_1 = 1 | z_2 = 0) = \Pr(z_1 = 1 | z_2 = 1) = 0.4$, species 1 does not care about presence/absence of species 2
+* ![$\Pr(z_2 = 1 | z_1 = 0) = 0.6$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%201%20%7C%20z_1%20%3D%200)%20%3D%200.6%24), species 2 is present with high probability whenever species 1 is absent
+* ![$\Pr(z_2 = 1 | z_1 = 1) = 0.1$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%201%20%7C%20z_1%20%3D%201)%20%3D%200.1%24), species 2 avoids species 1 when it is present
+* ![$\Pr(z_{1} = 1 | z_2 = 0) = \Pr(z_1 = 1 | z_2 = 1) = 0.4$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_%7B1%7D%20%3D%201%20%7C%20z_2%20%3D%200)%20%3D%20%5CPr(z_1%20%3D%201%20%7C%20z_2%20%3D%201)%20%3D%200.4%24), species 1 does not care about presence/absence of species 2
 
-Now we need to go back to the probabilities of occupancy. Let $x = \psi_{01}$, $y = \psi_{10}$ et $z = \psi_{11}$ soit $1 - x - y - z = \psi_{00}$, then we have a system of 3 equations with 3 unknowns:
+Now we need to go back to the occupancy probabilities. Let ![$x = \psi_{01}$](https://render.githubusercontent.com/render/math?math=%24x%20%3D%20%5Cpsi_%7B01%7D%24), ![$y = \psi_{10}$](https://render.githubusercontent.com/render/math?math=%24y%20%3D%20%5Cpsi_%7B10%7D%24), ![$z = \psi_{11}$](https://render.githubusercontent.com/render/math?math=%24z%20%3D%20%5Cpsi_%7B11%7D%24) so that ![$\psi_{00} = 1 - x - y - z$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B00%7D%20%3D%201%20-%20x%20-%20y%20-%20z%24), then we have a system of 3 equations with 3 unknowns:
 
-$$0.6 = x / (x + 1 - x - y - z) \Leftrightarrow x + 0.6y + 0.6z = 0.6$$
+![$0.6 = / (x + 1 - x - y - z) \Leftrightarrow x + 0.6y + 0.6z = 0.6$](https://render.githubusercontent.com/render/math?math=%240.6%20%3D%20%2F%20(x%20%2B%201%20-%20x%20-%20y%20-%20z)%20%5CLeftrightarrow%20x%20%2B%200.6y%20%2B%200.6z%20%3D%200.6%24)
 
-$$0.1 = z / (z + y) \Leftrightarrow -0.1y + 0.9z = 0$$
+![$0.1 = z / (z + y) \Leftrightarrow -0.1y + 0.9z = 0$](https://render.githubusercontent.com/render/math?math=%240.1%20%3D%20z%20%2F%20(z%20%2B%20y)%20%5CLeftrightarrow%20-0.1y%20%2B%200.9z%20%3D%200%24)
 
-$$0.4 = y / (y + 1 - x - y - z) \Leftrightarrow 0.4x + y + 0.4z = 0.4$$
+![$0.4 = y / (y + 1 - x - y - z) \Leftrightarrow 0.4x + y + 0.4z = 0.4$](https://render.githubusercontent.com/render/math?math=%240.4%20%3D%20y%20%2F%20(y%20%2B%201%20-%20x%20-%20y%20-%20z)%20%5CLeftrightarrow%200.4x%20%2B%20y%20%2B%200.4z%20%3D%200.4%24)
 
 which can be solved with the [Mathematica online solver](https://www.wolframalpha.com/input/?i=solve%7Bx%2B0.6y%2B0.6z%3D%3D0.6%2C-0.1y%2B0.9z%3D%3D0%2C0.4x%2By%2B0.4z%3D%3D0.4%7D): 
 
@@ -190,16 +192,16 @@ plot(data)
 
 Now we specify the effects we would like to consider on the occupancy and detection probabilities. The thing is that the function `occuMulti` doesn't work directly on the occupancy probabilities but on the so-called natural parameters (in that specific order): 
 
-* $f_1 = \log(\psi_{10}/\psi_{00})$;
-* $f_2 = \log(\psi_{01}/\psi_{00})$;
-* $f_{12} = \log(\psi_{00}\psi_{11} / \psi_{10}\psi_{01})$, 
+* ![$f_1 = \log(\psi_{10}/\psi_{00})$](https://render.githubusercontent.com/render/math?math=%24f_1%20%3D%20%5Clog(%5Cpsi_%7B10%7D%2F%5Cpsi_%7B00%7D)%24);
+* ![$f_2 = \log(\psi_{01}/\psi_{00})$](https://render.githubusercontent.com/render/math?math=%24f_2%20%3D%20%5Clog(%5Cpsi_%7B01%7D%2F%5Cpsi_%7B00%7D)%24);
+* ![$f_{12} = \log(\psi_{00}\psi_{11} / \psi_{10}\psi_{01})$](https://render.githubusercontent.com/render/math?math=%24f_%7B12%7D%20%3D%20%5Clog(%5Cpsi_%7B00%7D%5Cpsi_%7B11%7D%20%2F%20%5Cpsi_%7B10%7D%5Cpsi_%7B01%7D)%24), 
 
 that is:
 
-* $\psi_{11} = \exp(f_1+f_2+f_{12})/\mbox{den}$;
-* $\psi_{10} = \exp(f_1)/\mbox{den}$;
-* $\psi_{01} = \exp(f_2)/\mbox{den}$,
-where $\mbox{den} = 1+\exp(f_1)+\exp(f_2)+\exp(f_1+f_2+f_{12})$:
+* ![$\psi_{11} = \exp(f_1+f_2+f_{12})/\text{den}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B11%7D%20%3D%20%5Cexp(f_1%2Bf_2%2Bf_%7B12%7D)%2F%5Ctext%7Bden%7D%24);
+* ![$\psi_{10} = \exp(f_1)/\text{den}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B10%7D%20%3D%20%5Cexp(f_1)%2F%5Ctext%7Bden%7D%24);
+* ![$\psi_{01} = \exp(f_2)/\text{den}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B01%7D%20%3D%20%5Cexp(f_2)%2F%5Ctext%7Bden%7D%24),
+where ![$\text{den} = 1+\exp(f_1)+\exp(f_2)+\exp(f_1+f_2+f_{12})$](https://render.githubusercontent.com/render/math?math=%24%5Ctext%7Bden%7D%20%3D%201%2B%5Cexp(f_1)%2B%5Cexp(f_2)%2B%5Cexp(f_1%2Bf_2%2Bf_%7B12%7D)%24):
 
 ```r
 occFormulas <- c('~1','~1','~1') 
