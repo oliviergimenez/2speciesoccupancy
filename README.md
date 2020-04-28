@@ -192,16 +192,16 @@ plot(data)
 
 Now we specify the effects we would like to consider on the occupancy and detection probabilities. The thing is that the function `occuMulti` doesn't work directly on the occupancy probabilities but on the so-called natural parameters (in that specific order): 
 
-* $f_1 = \log(\psi_{10}/\psi_{00})$;
-* $f_2 = \log(\psi_{01}/\psi_{00})$;
-* $f_{12} = \log(\psi_{00}\psi_{11} / \psi_{10}\psi_{01})$, 
+* ![$f_1 = \log(\psi_{10}/\psi_{00})$](https://render.githubusercontent.com/render/math?math=%24f_1%20%3D%20%5Clog(%5Cpsi_%7B10%7D%2F%5Cpsi_%7B00%7D)%24);
+* ![$f_2 = \log(\psi_{01}/\psi_{00})$](https://render.githubusercontent.com/render/math?math=%24f_2%20%3D%20%5Clog(%5Cpsi_%7B01%7D%2F%5Cpsi_%7B00%7D)%24);
+* ![$f_{12} = \log(\psi_{00}\psi_{11} / \psi_{10}\psi_{01})$](https://render.githubusercontent.com/render/math?math=%24f_%7B12%7D%20%3D%20%5Clog(%5Cpsi_%7B00%7D%5Cpsi_%7B11%7D%20%2F%20%5Cpsi_%7B10%7D%5Cpsi_%7B01%7D)%24), 
 
 that is:
 
-* $\psi_{11} = \exp(f_1+f_2+f_{12})/\mbox{den}$;
-* $\psi_{10} = \exp(f_1)/\mbox{den}$;
-* $\psi_{01} = \exp(f_2)/\mbox{den}$,
-where $\mbox{den} = 1+\exp(f_1)+\exp(f_2)+\exp(f_1+f_2+f_{12})$:
+* ![$\psi_{11} = \exp(f_1+f_2+f_{12})/\text{den}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B11%7D%20%3D%20%5Cexp(f_1%2Bf_2%2Bf_%7B12%7D)%2F%5Ctext%7Bden%7D%24);
+* ![$\psi_{10} = \exp(f_1)/\text{den}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B10%7D%20%3D%20%5Cexp(f_1)%2F%5Ctext%7Bden%7D%24);
+* ![$\psi_{01} = \exp(f_2)/\text{den}$](https://render.githubusercontent.com/render/math?math=%24%5Cpsi_%7B01%7D%20%3D%20%5Cexp(f_2)%2F%5Ctext%7Bden%7D%24),
+where ![$\text{den} = 1+\exp(f_1)+\exp(f_2)+\exp(f_1+f_2+f_{12})$](https://render.githubusercontent.com/render/math?math=%24%5Ctext%7Bden%7D%20%3D%201%2B%5Cexp(f_1)%2B%5Cexp(f_2)%2B%5Cexp(f_1%2Bf_2%2Bf_%7B12%7D)%24):
 
 ```r
 occFormulas <- c('~1','~1','~1') 
