@@ -1,7 +1,6 @@
 # Simulate data and fit 2-species occupancy model à la Rota et al. (2016) w/ the R package unmarked
 
-We consider a two-species static occupancy model à la [Rota et al. (2016)](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12587). We simulate data from this model, and fit the model to these data using `Unmarked`.
-The equations below do no display well, you'd rather have a look to the [PDF file](https://github.com/oliviergimenez/2speciesoccupancy/blob/master/simul_rota.pdf). With the [Rmd file](https://github.com/oliviergimenez/2speciesoccupancy/blob/master/simul_rota.Rmd), you can run the code in RStudio and reproduce the results. 
+We consider a two-species static occupancy model à la [Rota et al. (2016)](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12587). We simulate data from this model, and fit the model to these data using `Unmarked`. With the [Rmd file](https://github.com/oliviergimenez/2speciesoccupancy/blob/master/simul_rota.Rmd), you can run the code in RStudio and reproduce the results. 
 
 ## Setting the scene
 
@@ -23,7 +22,7 @@ The marginal probabilities of occupancy are:
 * ![$\Pr(z_1 = 0) = \Pr(\text{species 1 is absent}) = \psi_{01} + \psi_{00}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%200)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20absent%7D)%20%3D%20%5Cpsi_%7B01%7D%20%2B%20%5Cpsi_%7B00%7D%24)
 * ![$\Pr(z_2 = 0) = \Pr(\text{species 2 is absent}) = \psi_{10} + \psi_{00}$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_2%20%3D%200)%20%3D%20%5CPr(%5Ctext%7Bspecies%202%20is%20absent%7D)%20%3D%20%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B00%7D%24)
 
-And the conditional probabilities (reminder: ![$\Pr(\text{A|B}) = \Pr(\text{A and B})/\Pr(\text{B})$](https://render.githubusercontent.com/render/math?math=%24%5CPr(%5Ctext%7BA%7CB%7D)%20%3D%20%5CPr(%5Ctext%7BA%20and%20B%7D)%2F%5CPr(%5Ctext%7BB%7D)%24) ):
+And the conditional probabilities given that ![$\Pr(\text{A|B}) = \Pr(\text{A and B})/\Pr(\text{B})$](https://render.githubusercontent.com/render/math?math=%24%5CPr(%5Ctext%7BA%7CB%7D)%20%3D%20%5CPr(%5Ctext%7BA%20and%20B%7D)%2F%5CPr(%5Ctext%7BB%7D)%24):
 
 * ![$\Pr(z_1 = 1 | z_2 = 0) = \psi_{10} / (\psi_{10} + \psi_{00}) = \Pr(\text{species 1 is present given species 2 is absent});$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%201%20%7C%20z_2%20%3D%200)%20%3D%20%5Cpsi_%7B10%7D%20%2F%20(%5Cpsi_%7B10%7D%20%2B%20%5Cpsi_%7B00%7D)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20present%20given%20species%202%20is%20absent%7D)%3B%24)
 * ![$\Pr(z_1 = 1 | z_2 = 1) = \psi_{11} / (\psi_{11} + \psi_{01}) = \Pr(\text{species 1 is present given species 2 is present});$](https://render.githubusercontent.com/render/math?math=%24%5CPr(z_1%20%3D%201%20%7C%20z_2%20%3D%201)%20%3D%20%5Cpsi_%7B11%7D%20%2F%20(%5Cpsi_%7B11%7D%20%2B%20%5Cpsi_%7B01%7D)%20%3D%20%5CPr(%5Ctext%7Bspecies%201%20is%20present%20given%20species%202%20is%20present%7D)%3B%24)
